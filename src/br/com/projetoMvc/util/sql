@@ -1,0 +1,5 @@
+CREATE TABLE produto(
+	id 		  SERIAL,
+	descricao VARCHAR(150) not null,
+	CONSTRAINT pk_produto PRIMARY KEY (id)
+);

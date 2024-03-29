@@ -2,7 +2,7 @@ package br.com.projetoMvc.DAO;
 
 import java.util.List;
 
-public interface GenercDAO {
+public interface GenericDAO {
 
 	public List<Object> listarTodos();
 	public Object listarPorId(int id);
