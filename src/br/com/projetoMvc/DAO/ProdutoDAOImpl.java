@@ -29,31 +29,29 @@ public class ProdutoDAOImpl implements GenericDAO {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		String sql = "SELECT * FROM produto ORDER BY descricao";
-		
+
 		try {
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				Produto produto = new Produto();
 				produto.setId(rs.getInt("id"));
 				produto.setDescricao(rs.getString("descricao"));
 				lista.add(produto);
 			}
-		} catch(SQLException ex) {
+		} catch (SQLException ex) {
 			System.out.println("Problemas na DAO ao listar Produto! Erro" + ex.getMessage());
 			ex.printStackTrace();
-		}finally {
+		} finally {
 			try {
 				ConnectionFactory.closeConnection(conn, stmt, rs);
-			}catch(Exception ex) {
+			} catch (Exception ex) {
 				System.out.println("Problemas ao fechar a conexão! Erro:" + ex.getLocalizedMessage());
 			}
 		}
-		
-	
+
 		return lista;
 	}
-	
 
 	@Override
 	public Object listarPorId(int id) {
@@ -63,8 +61,26 @@ public class ProdutoDAOImpl implements GenericDAO {
 
 	@Override
 	public Boolean cadastrar(Object object) {
-		// TODO Auto-generated method stub
-		return null;
+		Produto produto = (Produto) object;
+		PreparedStatement stmt = null;
+		String sql = "INSERT INTO produto (description)" + "VALUES (?)";
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, produto.getDescricao());
+			stmt.execute();
+			return true;
+		} catch (SQLException ex) {
+			System.out.print("Problemas na DAO ao cadastrar Produto! Erro: " + ex.getMessage());
+			ex.printStackTrace();
+			return false;
+		} finally {
+			try {
+				ConnectionFactory.closeConnection(conn, stmt);
+			} catch (Exception ex) {
+				System.out.print("Problemas ao fechar conexão! Erro:" + ex.getMessage());
+				ex.printStackTrace();
+			}
+		}
 	}
 
 	@Override
@@ -76,7 +92,7 @@ public class ProdutoDAOImpl implements GenericDAO {
 	@Override
 	public void excluir(int id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
