@@ -11,34 +11,76 @@ import br.com.projetoMvc.model.Produto;
 public class Main {
 
 	public static void main(String[] args) {
-		ProdutoController controller = new ProdutoController();
 		
-		Produto novoProduto = new Produto();
-		novoProduto.setDescricao(JOptionPane.showInputDialog("Descrição do produto"));
-		
-		controller.cadastrar(null);
+		String menu = "****Menu de opçoes****"
+		.concat("\n[1] Listar todos")
+		.concat("\n[2] Listar por ID")
+		.concat("\n[3] Cadastrar")
+		.concat("\n[4] Alterar")
+		.concat("\n[5] Excluir")
+		.concat("\n[0] Sair");
+		int opcao = Integer.parseInt(JOptionPane.showInputDialog(menu));
 
-		List<Produto> lista = new ArrayList<Produto>();
-		lista = controller.listarTodos();
-		System.out.println("- Lista de produtos -");
-//		for (Produto produto : lista) {
-//			System.out.println(produto.getDescricao());
+		
+		switch (opcao) {
+
+		case 1: 
+			JOptionPane.showMessageDialog(null, "Listar todos");
+			
+			break;
+			
+		case 2: 
+			JOptionPane.showMessageDialog(null, "Listar por ID");
+			break;
+		
+		case 3: 
+			JOptionPane.showMessageDialog(null, "Cadastrar");
+			break;
+		
+		case 4: 
+			JOptionPane.showMessageDialog(null, "Alterar");
+			break;
+			
+		case 5: 
+			JOptionPane.showMessageDialog(null, "Excluir");
+			break;
+			
+		case 0: 
+			JOptionPane.showMessageDialog(null, "Sair");
+			break;
+			
+		default:
+			JOptionPane.showMessageDialog(null, "Opção inválida pra o código" + opcao);
+		
+		}
+		
+		
+		
+//		ProdutoController controller = new ProdutoController();
+//		
+//		Produto novoProduto = new Produto();
+//		novoProduto.setDescricao(JOptionPane.showInputDialog("Descrição do produto"));
+//		
+//		controller.cadastrar(null);
 //
-//		}
-		
-		String mensagemLista = ""
-		        .concat("- Lista de produtos -")
-		        .concat("\n")
-		        .concat("Cód. Descrição");
-		
-		for (Produto produto : lista) {
-		mensagemLista = mensagemLista
-				.concat("\n")
-				.concat(String.valueOf(produto.getId()))
-				.concat("    ")
-				.concat(produto.getDescricao());
-	}
-		
-		JOptionPane.showMessageDialog(null, mensagemLista);
+//		List<Produto> lista = new ArrayList<Produto>();
+//		lista = controller.listarTodos();
+//		System.out.println("- Lista de produtos -");
+//
+//		
+//		String mensagemLista = ""
+//		        .concat("- Lista de produtos -")
+//		        .concat("\n")
+//		        .concat("Cód. Descrição");
+//		
+//		for (Produto produto : lista) {
+//		mensagemLista = mensagemLista
+//				.concat("\n")
+//				.concat(String.valueOf(produto.getId()))
+//				.concat("    ")
+//				.concat(produto.getDescricao());
+//	}
+//		
+//		JOptionPane.showMessageDialog(null, mensagemLista);
 	}
 }
