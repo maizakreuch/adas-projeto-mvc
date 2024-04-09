@@ -63,7 +63,7 @@ public class ProdutoDAOImpl implements GenericDAO {
 	public Boolean cadastrar(Object object) {
 		Produto produto = (Produto) object;
 		PreparedStatement stmt = null;
-		String sql = "INSERT INTO produto (description)" + "VALUES (?)";
+		String sql = "INSERT INTO produto (descricao)" + "VALUES (?)";
 		try {
 			stmt = conn.prepareStatement(sql);
 			stmt.setString(1, produto.getDescricao());
