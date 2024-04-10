@@ -44,4 +44,15 @@ public class ProdutoController {
 		
 			
 }
+	public Produto listarPorId(int id) {
+		try {
+			GenericDAO dao = new ProdutoDAOImpl();
+			Produto produto = (Produto) dao.listarPorId(id);
+		return produto;
+		}catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
 }
