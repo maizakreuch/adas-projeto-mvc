@@ -59,7 +59,16 @@ public class Main {
 				break;
 				
 			case 2: 
-				JOptionPane.showMessageDialog(null, "Listar por ID");
+				
+				
+				int id = Integer.parseInt(JOptionPane.showInputDialog("Digite o ID desejado"));
+				Produto produtoEncontrado = controller.listarPorId(id);
+				
+				if(produtoEncontrado!= null) {
+					JOptionPane.showMessageDialog(null, "Produto encontrado: " + produtoEncontrado.getDescricao());
+				}else{
+					JOptionPane.showMessageDialog(null, "Nenhum produto encontrado para ID " + id);
+				}
 				break;
 			
 			case 3: 
