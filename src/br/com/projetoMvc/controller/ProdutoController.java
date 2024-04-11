@@ -65,6 +65,7 @@ public class ProdutoController {
 			if (produto == null){
 				return false;
 			}
+			dao = new ProdutoDAOImpl();
 			dao.excluir(id);
 			return true;
 		} catch (Exception e) {

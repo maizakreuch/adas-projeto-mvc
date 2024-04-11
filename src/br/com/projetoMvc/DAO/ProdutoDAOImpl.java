@@ -109,7 +109,8 @@ public class ProdutoDAOImpl implements GenericDAO {
 
 	@Override
 	public Boolean alterar(Object object) {
-		// TODO Auto-generated method stub
+		Produto produto  = (Produto) object;
+	}
 		return null;
 	}
 
