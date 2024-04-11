@@ -115,8 +115,19 @@ public class ProdutoDAOImpl implements GenericDAO {
 
 	@Override
 	public void excluir(int id) {
-		// TODO Auto-generated method stub
-
+	PreparedStatement stmt = null;
+	String sql = "DELETE FROM produto WHERE id = ?";
+	try {
+		stmt = conn.prepareStatement(sql);
+		stmt.setInt(1, id);
+		stmt.executeUpdate();
+	}catch(SQLException ex){
+		System.out.print("Problemas na DAO ao excluir Produto! Erro: "+ ex.getMessage());
+	}finally{
+		try {
+			ConnectionFactory.closeConnection(conn, stmt);
+	}catch(Exception e){
+		System.out.print("Problemas ao fechar conexão! Erro:" + e.getMessage());
 	}
 
 }

@@ -83,7 +83,13 @@ public class Main {
 				break;
 				
 			case 5: 
-				JOptionPane.showMessageDialog(null, "Excluir");
+				int idExclusao = Integer.parseInt(JOptionPane.showInputDialog("Qual ID do produto a ser excluido? "));
+				if (controller.excluir(idExclusao)) {
+					JOptionPane.showMessageDialog(null, "Produto excluído com sucesso!");
+				}else{
+					JOptionPane.showMessageDialog(null, "Não foi possível excluir produto com ID " + idExclusao);
+					
+				}
 				break;
 				
 			case 0: 
