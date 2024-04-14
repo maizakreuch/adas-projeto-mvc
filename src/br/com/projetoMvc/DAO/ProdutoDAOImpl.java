@@ -109,10 +109,29 @@ public class ProdutoDAOImpl implements GenericDAO {
 
 	@Override
 	public Boolean alterar(Object object) {
-		Produto produto  = (Produto) object;
-	}
-		return null;
-	}
+			Produto produto = (Produto) object;
+			PreparedStatement stmt = null;
+			String sql = "UPDATE produto SET descricao = ? WHERE id = ?";
+			try {
+				stmt = conn.prepareStatement(sql);
+				stmt.setString(1, produto.getDescricao());
+				stmt.setInt(2, produto.getId());
+				stmt.execute();
+				return true;
+			} catch (SQLException ex) {
+				System.out.println("Problemas na DAO ao alterar Produto: " + ex.getMessage());
+				ex.printStackTrace();
+				return false;
+			} finally {
+				try {
+					ConnectionFactory.closeConnection(conn, stmt);
+				} catch (Exception e) {
+					System.out.println("Problemas para fechar conexão!");
+					e.printStackTrace();
+				}
+			}
+		}
+		
 
 	@Override
 	public void excluir(int id) {
@@ -131,4 +150,6 @@ public class ProdutoDAOImpl implements GenericDAO {
 		System.out.print("Problemas ao fechar conexão! Erro:" + e.getMessage());
 	}
 
+}
+}
 }
